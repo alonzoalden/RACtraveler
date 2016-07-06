@@ -1,14 +1,49 @@
+
+//-------------------------------------------------
+// tweeting!!
+//-------------------------------------------------
+
+
 console.log("The bot is starting");
 
 var Twit 	= require('twit');
 var config 	= require('./config');
+var rac 	= require('./rac.js');
 // var randomizer 	= require('./randomizer');
 
 var T = new Twit(config);
 // var myTweet = randomizer;
 // console.log(myTweet);
 
+//-------------------------------------------------
+// Random sentence
+//-------------------------------------------------
+var randomizer = function(arr) {
+  var randomize = Math.floor(Math.random()  * (arr.length - 0) + 0);
+  // console.log(randomize);
+  return randomize;
+}
 
+// var city = addressInput;
+
+var getTweet = function(location,noun,verb,adj){ // Gets he tempaerature, sunset, and sunrise times
+  var city = addressInput;
+  var noun = ["account", "act", "addition", "adjustment", "advertisement", "agreement", "air", "amount", "amusement", "animal", "answer", "apparatus", "approval", "argument", "art", "attack", "attempt", "attention", "attraction", "authority", "back", "balance", "base", "behavior", "belief", "birth", "bit", "bite", "blood", "blow", "body", "brass", "bread", "breath", "brother", "building", "burn", "burst", "business", "butter", "canvas", "care", "cause", "chalk", "chance", "change", "cloth", "coal", "color", "comfort", "committee", "company", "comparison", "competition", "condition", "connection", "control", "cook", "copper", "copy", "cork", "cotton", "cough", "country", "cover", "crack", "credit", "crime", "crush", "cry", "current", "curve", "damage", "danger", "daughter", "day", "death", "debt", "decision", "degree", "design", "desire", "destruction", "detail", "development", "digestion", "direction", "discovery", "discussion", "disease", "disgust", "distance", "distribution", "division", "doubt", "drink", "driving", "dust", "earth", "edge", "education", "effect", "end", "error", "event", "example", "exchange", "existence", "expansion", "experience", "expert", "fact", "fall", "family", "father", "fear", "feeling", "fiction", "field", "fight", "fire", "flame", "flight", "flower", "fold", "food", "force", "form", "friend", "front", "fruit", "glass", "gold", "government", "grain", "grass", "grip", "group", "growth", "guide", "harbor", "harmony", "hate", "hearing", "heat", "help", "history", "hole", "hope", "hour", "humor", "ice", "idea", "impulse", "increase", "industry", "ink", "insect", "instrument", "insurance", "interest", "invention", "iron", "jelly", "join", "journey", "judge", "jump", "kick", "kiss", "knowledge", "land", "language", "laugh", "law", "lead", "learning", "leather", "letter", "level", "lift", "light", "limit", "linen", "liquid", "list", "look", "loss", "love", "machine", "man", "manager", "mark", "market", "mass", "meal", "measure", "meat", "meeting", "memory", "metal", "middle", "milk", "mind", "mine", "minute", "mist", "money", "month", "morning", "mother", "motion", "mountain", "move", "music", "name", "nation", "need", "news", "night", "noise", "note", "number", "observation", "offer", "oil", "operation", "opinion", "order", "organisation", "ornament", "owner", "page", "pain", "paint", "paper", "part", "paste", "payment", "peace", "person", "place", "plant", "play", "pleasure", "point", "poison", "polish", "porter", "position", "powder", "power", "price", "print", "process", "produce", "profit", "property", "prose", "protest", "pull", "punishment", "purpose", "push", "quality", "question", "rain", "range", "rate", "ray", "reaction", "reading", "reason", "record", "regret", "relation", "religion", "representative", "request", "respect", "rest", "reward", "rhythm", "rice", "river", "road", "roll", "room", "rub", "rule", "run", "salt", "sand", "scale", "science", "sea", "seat", "secretary", "selection", "self", "sense", "servant", "sex", "shade", "shake", "shame", "shock", "side", "sign", "silk", "silver", "sister", "size", "sky", "sleep", "slip", "slope", "smash", "smell", "smile", "smoke", "sneeze", "snow", "soap", "society", "son", "song", "sort", "sound", "soup", "space", "stage", "start", "statement", "steam", "steel", "step", "stitch", "stone", "stop", "story", "stretch", "structure", "substance", "sugar", "suggestion", "summer", "support", "surprise", "swim", "system", "talk", "taste", "tax", "teaching", "tendency", "test", "theory", "thing", "thought", "thunder", "time", "tin", "top", "touch", "trade", "transport", "trick", "trouble", "turn", "twist", "unit", "use", "value", "verse", "vessel", "view", "voice", "walk", "war", "wash", "waste", "water", "wave", "wax", "way", "weather", "week", "weight", "wind", "wine", "winter", "woman", "wood", "wool", "word", "work", "wound", "writing", "year"];
+  var verb = ["accept", "add", "admire", "admit", "advise", "afford", "agree", "is", "was", "are", "has", "get", "see", "need", "know", "would", "find", "take", "want", "does", "learn", "become", "come", "include", "thank", "provide", "create", "add", "understand", "consider", "choose", "develop", "remember", "determine", "grow", "allow", "supply", "bring", "improve", "maintain", "begin", "exist", "tend", "enjoy", "perform", "decide", "identify", "continue", "protect", "require", "occur", "write", "approach", "avoid", "prepare", "build", "achieve", "believe", "receive", "seem", "discuss", "realize", "contain", "follow", "refer", "solve", "describe", "prefer", "prevent", "discover", "ensure", "expect", "invest", "reduce", "speak", "appear", "explain", "explore", "involve", "lose", "afford", "agree", "hear", "remain", "represent", "apply", "forget", "recommend", "rely", "vary", "generate", "obtain", "accept", "communicate", "complain", "depend", "enter", "happen", "indicate", "suggest", "survive", "appreciate", "compare", "imagine", "manage", "differ", "encourage", "expand", "prove", "react", "recognize", "relax", "replace", "borrow", "earn", "emphasize", "enable", "operate", "reflect", "send", "anticipate", "assume", "engage", "enhance", "examine", "install", "participate", "intend", "introduce", "relate", "settle", "assure", "attract", "distribute", "overcome", "owe", "succeed", "suffer", "throw", "acquire", "adapt", "adjust", "argue", "arise", "confirm", "encouraging", "incorporate", "justify", "organize", "ought", "possess", "relieve", "retain", "shut", "calculate", "compete", "consult", "deliver", "extend", "investigate", "negotiate", "qualify", "retire", "rid", "weigh", "arrive", "attach", "behave", "celebrate", "convince", "disagree", "establish", "ignore", "imply", "insist", "pursue", "remaining", "specify", "warn", "accuse", "admire", "admit", "adopt", "announce", "apologize", "approve", "attend", "belong", "commit", "criticize", "deserve", "destroy", "hesitate", "illustrate", "inform", "manufacturing", "persuade", "pour", "propose", "remind", "shall", "submit", "suppose", "translate"]
+  var adverb = ["abnormally", "absentmindedly", "absolutely", "abundantly", "accordingly", "actively" , "carefully", "correctly", "eagerly", "easily", "fast", "loudly", "patiently", "quickly", "quietly", "accidentally", "intentionally", "always", "every", "never", "often", "rarely", "seldom", "sometimes", "after", "already", "during", "finally", "just", "last", "later", "next", "now", "recently", "soon", "then", "tomorrow", "when", "while", "Everywhere", "here", "there"]
+  var adj = ["able", "acid", "angry", "automatic", "awake", "bad", "beautiful", "bent", "bitter", "black", "blue", "boiling", "bright", "broken", "brown", "certain", "cheap", "chemical", "chief", "clean", "clear", "cold", "common", "complete", "complex", "conscious", "cruel", "cut", "dark", "dead", "dear", "deep", "delicate", "dependent", "different", "dirty", "dry", "early", "elastic", "electric", "equal", "false", "fat", "feeble", "female", "fertile", "first", "fixed", "flat", "foolish", "free", "frequent", "full", "future", "general", "good", "gray", "great", "green", "hanging", "happy", "hard", "healthy", "high", "hollow", "ill", "important", "kind", "last", "late", "left", "like", "living", "long", "loose", "loud", "low", "male", "married", "material", "medical", "military", "mixed", "narrow", "natural", "necessary", "new", "normal", "old", "open", "opposite", "parallel", "past", "physical", "political", "poor", "possible", "present", "private", "probable", "public", "quick", "quiet", "ready", "red", "regular", "responsible", "right", "rough", "round", "sad", "safe", "same", "second", "secret", "separate", "serious", "sharp", "short", "shut", "simple", "slow", "small", "smooth", "soft", "solid", "special", "sticky", "stiff", "straight", "strange", "strong", "sudden", "sweet", "tall", "thick", "thin", "tight", "tired", "true", "violent", "waiting", "warm", "wet", "white", "wide", "wise", "wrong", "yellow", "young"]
+  var tweet = "";
+
+  // var rand = Math.round(Math.random()  * (nouns.length - 0) + 0);
+  // tweet = $('#tweeter').append(adverb[randomizer(adverb)] + " " + adj[randomizer(adj)]  + " " + noun[randomizer(noun)] + " "  +  verb[randomizer(verb)]  + " \n");
+  tweet = (city[randomizer(city)] + " " + noun[randomizer(noun)]  + ". "  + adverb[randomizer(adverb)] + " " + adj[randomizer(adj)]  + " " + noun[randomizer(noun)] + ". " + verb[randomizer(verb)]  + " " + noun[randomizer(noun)] + ". \n");
+  // console.log(tweet);
+  // $('#tweeter').append("<p>Tweet: " + tweet + "</p>");
+  return tweet;
+}
+
+var myTweet = getTweet();
+console.log(myTweet);
 
 //-------------------------------------------------
 // Setting up a user stream to reply to followers
@@ -33,120 +68,52 @@ var T = new Twit(config);
 //-------------------------------------------------
 
 var params = {
-	q: 'is since:2011-07-11',
-	count: 5,
-	// geocode: [
- //      {
-	//  "name": "San Francisco",
- //      "place_type": "city",
- //      }]
-
+	q: 'travel since:2011-07-11',
+	count: 3
 };
-var mainArr = [];
 T.get('search/tweets', params, gotData);
-// var myArr = [];
+var myArr = [];
 
 function gotData(err, data, response) {
-	var myArr = [];
 	var tweets = data.statuses
-
-
-//geocode loaction
-// var users = o.twitter.get(), arr = new Array;
-//         for (i in users){
-//             var user = users[i];
-//             $.getJSON('http://twitter.com/users/show/'+user+'.json?callback=?', function(data) {
-//                 var img = data.profile_image_url,
-//                     screen_name = data.screen_name;
-//                 geocoder.geocode({ address: data.location }, function(response, status){
-//                     if (status == google.maps.GeocoderStatus.OK) {
-//                         var x = response[0].geometry.location.lat(),
-//                             y = response[0].geometry.location.lng();
-//                         marker = new google.maps.Marker({
-//                             icon: img,
-//                             map: map,
-//                             title: screen_name,
-//                             position: new google.maps.LatLng(x, y)
-//                         });
 	
-	// for (var i = 0; i < tweets.length; i++) {
-	// 	console.log(tweets[i].text);
-	// 	tweets[i].text = tweets[i].text.replace("@\\w+ *", "");
-	// 	tweets[i].text = tweets[i].text.replace("http\\w+ *", "");
-	// 	tempArr = tweets[i].text.split(' ');
-	// 	tempArr = tempArr.slice((tempArr.length/2) - 2,(tempArr.length/2) + 3);
-	// 	console.log(tempArr);
-	// 	tweets[i].text = tempArr.join(' ');
-	// 	console.log(tweets[i].text);
-	// 	mainArr.push(tweets[i].text);
-	// }
-		// arr.reduce(function(prev,current){
-  //   	prev[current] = prev[current] === undefined ? 1 : prev[current] + 1;
-  //   	return prev;
-  //   	},{})
+	for (var i = 0; i < tweets.length; i++) {
+		myArr.push(tweets[i].text);
 		
-
-	tweets.forEach(function(text,i,tweets){
-		console.log(tweets[i].text);
-		tweets[i].text = tweets[i].text.replace("@\\w+ *", "");
-		tweets[i].text = tweets[i].text.replace("http\\w+ *", "");
-		tempArr = tweets[i].text.split(' ');
-		tempArr = tempArr.slice((tempArr.length/2) - 2,(tempArr.length/2) + 3);
-		console.log(tempArr);
-		tweets[i].text = tempArr.join(' ');
-		console.log(tweets[i].text);
-		mainArr.push(tweets[i].text);
-	});
-	
-	console.log(mainArr);
-  return mainArr;
+	}
+  // return myArr;
  };
 //
-console.log(mainArr);
+console.log(myArr);
 //  get the list of user id's that follow @ractraveler
 //
-// T.get('followers/ids', { screen_name: 'ractraveler' },  function (err, data, response) {
-//   console.log(data)
-// })
+T.get('followers/ids', { screen_name: 'ractraveler' },  function (err, data, response) {
+  // console.log(data)
+})
 
-//
-//  tweet 'hello world!'
-//-------------------------------------------------
-// locations
-//-------------------------------------------------
-    // "locations": [
-    //   {
-    //     "name": "Worldwide",
-    //     "woeid": 1
-    //   }
-//
 //-------------------------------------------------
 // tweet function posts a tweet based off random sentence from getTweet function
 //-------------------------------------------------
 
-// 
-// tweetIt();
+//set tweet interval
+// setInterval(tweetIt, 1000*60*60);
+// setInterval(tweetIt, 1000*20);
 
-// //set tweet interval
-// // setInterval(tweetIt, 1000*60*60);
-// // setInterval(tweetIt, 1000*20);
+//post a status update tweet function using a random number to bypass twitters double post
+function tweetIt(txt) {
+	var r = Math.floor(Math.random()*100);
+	var tweet = {
+		status: r + '.' + " " + myTweet + '.'
+		// media
+	}
 
-// //post a status update tweet function using a random number to bypass twitters double post
-// function tweetIt(txt) {
-// 	var r = Math.floor(Math.random()*100);
-// 	var tweet = {
-// 		status: r + '.' + " " + myTweet + '.'
-// 		// media
-// 	}
+	T.post('statuses/update', tweet, tweeted);
 
-// 	T.post('statuses/update', tweet, tweeted);
-
-// 	function tweeted(err, data, response) {
-// 		if (err) {
-// 			console.log("Wrong");
-// 		} else {
-// 			console.log("it works");
-// 		} 
-// 	}
-// }
-
+	function tweeted(err, data, response) {
+		if (err) {
+			console.log("Wrong");
+		} else {
+			console.log("it works");
+		} 
+	}
+}

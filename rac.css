@@ -7,17 +7,30 @@ body {
   background-color: #0A0505;
 }
 
+#outerdivfav {
+	width: 45%;
+	float: right;
+	margin-top: -200px;
+	margin-right: 5%;
+}
+#outerdiv {
+	width: 80%;
+	margin-top: 50px;
+	margin-right: 5%;
+	margin-left: 10%;
+	text-align: center;
+	padding-bottom: 100px;
+
+}
 #googleMap {
 	float: right;
-	display: inline-block;
 	border: solid;
 	border-color: white;
-	border-radius: 5%;
-	width: 50%;
-	height: 200px;
-	margin-right: 12%;
-	margin-top: 50px;
+	width: 100%;
+	height: 300px;
+	margin-right:;
 }
+
 #tweeter {
 	float: left;
 	margin-left: 5%;
@@ -26,30 +39,81 @@ body {
 	border-radius: 10%;
 	border-color: white;
 	border: solid;
-
 }
 
-.heading { 
+.heading_main { 
 	background-image: url("sunset_boat.png");
 	background-size: cover;
 	max-width: 100%;
 	background-repeat: no-repeat;
 	height: 65%;
-	padding-top: 150px;
-	font-family: Georgia;
+	font-family: Arial Black; Georgia;
 	color: white;
 	text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 	text-align: center;
-	}
-.container {
-	margin-top: -20px;
 }
-#nav {
+.heading_fav {
+	background-image: url("sunset_boat.png");
+	background-size: cover;
+	max-width: 100%;
+	background-repeat: no-repeat;
+	height: 75%;
+	font-family: Arial Black; Georgia;
+	color: white;
+	text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+	text-align: center;
+
+}
+.topspace {
+	margin-top: 115px;
+}
+.leftspace {
+	max-width: 100%;
+	margin-left: 8%;
+}
+.navbar {
 	z-index: 1;
 	background-color: transparent;
 	position: absolute;
 	width: 100%;
 	list-style: none;
+	border: none;
+	color: orange;
+}
+#links a {
+  font-family: Raleway; Garamond;
+  color: white;
+  text-decoration: none;
+  font-size: 16px;
+}
+#links a:hover {
+	color: orange;
+}
+.cities {
+	font-size: 20px;
+}
+#linkscities {
+	margin-top: -20%;
+	margin-left: 8%;
+	text-decoration: none;
+	list-style: none;
+	height: 65%;
+	font-family: Arial Black; Georgia;
+	color: white;
+	text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+	text-align: left;
+	width: 40%;
+}
+.text {
+	margin-top: ;
+	margin-left: 27%;
+	text-decoration: none;
+	list-style: none;
+	font-family: Arial; Georgia;
+	color: white;
+	width: 60%;
+	font-size: 18px;
+
 }
 h1 {
 	font-size: 100px;
@@ -99,13 +163,24 @@ li p {
 	float: right;
 	text-align: center;
 	color: white;
-}
-#outerdiv {
-	width: 100%;
-	text-align: left;
+
 }
 #button {
 	float: right;
 	margin-top: 50px;
 	margin-right: 30%;
+	color: black;
+}
+#favlist {
+	margin-top: 400px;
+	float: left;
+}
+#footer {
+	margin-top: 20%;
+}
+.input-group {
+	margin-top: 30px;
+	margin-left: 20%;
+	width: 60%;
+	text-align: center;
 }

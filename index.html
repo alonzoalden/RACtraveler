@@ -1,67 +1,64 @@
-<html lang="en-US" ng-app="RAC Site">
+<html lang="en-US" ng-app="scotchApp">
     <head>
         <title>RAC Traveler</title>
         <meta charset="utf-8">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.css">
-        <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
-
+        <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.0/css/font-awesome.css" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.3/jquery.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC-41Qlmz-7BmBW3Q6YzfdUVQ99niwUttk"></script>
+        <script src="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.10/angular.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.10/angular-route.min.js"></script>
         <script type="text/javascript" src="rac.js"></script>
+        <!--  <script type="text/javascript" src="racbotpost.js"></script> -->
         <link rel="stylesheet" type="text/css" href="rac.css">
     </head>
 
 
+  <body ng-controller="mainController">
 
-  <body ng-controller="AppController">
-    <div id = "nav">
-        <ul>
-            <li><a href="#"><strong>Home</strong></a></li>
-            <li><a href="#about">About</a></li>
-        </ul>
-    </div>
-    <div class="right">
-        <ul>
-            <li><p><strong>#RP28</strong></p></li>
-        </ul>
-    </div>
-    </div>
+        <nav class="navbar navbar-default">
+            <div class="container">
+                <div class="navbar-header" id="links">
+                    <a class="navbar-brand" href="/">#RP28 Project</a>
+                </div>
 
-
-
-      <div class="heading">
-        <div class="container">
-          <h1>RAC Traveler</h1><h3>Live to travel.</h3><br>
-
-            <a href="https://twitter.com/ractraveler" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @ractraveler</a> <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
-        </div>
-      </div>
+                <ul class="nav navbar-nav navbar-right" id="links">
+                    <li><a href="#"><i class="fa fa-home"></i> Home</a></li>
+                    <li><a href="#fav_places"><i class="fa fa-shield"></i> RAC Top Spots</a></li>
+                    <li><a href="#about"><i class="fa fa-comment"></i>About</a></li>
+                </ul>
+            </div>
+        </nav>
 
 
+<div id="main">
 
 
-
-        <div id="outerdiv">
-
-            <div id="googleMap"></div>
-
-            <div id="tweeter">
-                <a class="twitter-timeline" data-width="220" data-height="600" data-theme="light" href="https://twitter.com/ractraveler">Tweets by RACTraveler</a>
-                 <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script></div>
-
-
-
-               <div id = "button">
-                 <h4>Send RAC Traveler somewhere... </h4><input type="text" id="address-input">
-              <button onclick="searchAddress();">Send!</button>
-        </div>
-
+    <div ng-view>
     </div>
 
+   <!--  <div="twitter">
+                       <="tweeter">
+                             <a class="twitter-timeline" data-width="220" data-height="600" data-theme="light" href="https://twitter.com/ractraveler">Tweets by er</a>
+
+                   <script async src="//platform.twitter.com/widgets.js" charset=ript>
+                 </div>
+
+
+    </div> -->
+
+
+ </div>
 
         <footer>
+           <div id="footer">
+  <div class="container">
+    <p class="text-muted">Copyright ©2014 RAC, Inc.</p>
+  </div>
+</div>
         </footer>
-        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC-41Qlmz-7BmBW3Q6YzfdUVQ99niwUttk&callback=initMap"
-    async defer></script>
+        <script type="text/javascript" src="racbotpost.js"></script>
     </body>
 </html>
