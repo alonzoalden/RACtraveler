@@ -1,4 +1,4 @@
-/* 
+/*
 main page would have map
 choose where it wants to go that day
 add to travel log
@@ -6,9 +6,9 @@ add twitter ai bot
 choose image from google images
 
 ///OTHER OPTIONS--------------------
--  
+-
 -  make up a list of favorite places travelled. Include "tour"
--  make twitter bot get results of city you tweet to it from other travel/documentary twitter accounts 
+-  make twitter bot get results of city you tweet to it from other travel/documentary twitter accounts
    (like a travel guide bot)
 -  make up a "request to go to a place" and include waypoint from antarctica (his home)
 -
@@ -47,13 +47,13 @@ http://ursooperduper.github.io/2014/10/27/twitter-bot-with-node-js-part-1.html
 
 //---------------------------------------------------------------
 //GOOGLE MAP
-//--------------------------------------------------------------- 
+//---------------------------------------------------------------
 // var map;
 // function initMap() {
 //   map = new google.maps.Map(document.getElementById('map'), {
 //     center: {lat:40.7413549, lng:-73.9980244},
 //     zoom:13
-    
+
 //   });
 // }
 
@@ -101,16 +101,16 @@ scotchApp.controller('mainController', function($scope) {
 
 // var routes1 = []
 // var sf1 = {
-//   origin: "San Francisco, CA", 
+//   origin: "San Francisco, CA",
 //   destination: "Palo Alto, CA"
 // },
 // var sf2 = {
-//   origin: "San Francisco, CA", 
+//   origin: "San Francisco, CA",
 //   destination: "golden gate bridge"
 // },
 
 // var sf3 = {
-//   origin: "San Francisco, CA", 
+//   origin: "San Francisco, CA",
 //   destination: "santa cruz"
 // }
 // routes1.push(sf1)
@@ -149,7 +149,6 @@ var InfoWindow;
 
 function initialize() {
 infowindow = new google.maps.InfoWindow();
-directionsDisplay = new google.maps.DirectionsRenderer();
   var mapProp = {
     center:new google.maps.LatLng(-67.5519382,-11.3450925),
     zoom:2,
@@ -194,7 +193,7 @@ function clicker(location, lat, long) {
 
     var marker, i;
 
-    for (i = 0; i < location.length; i++) {  
+    for (i = 0; i < location.length; i++) {
       marker = new google.maps.Marker({
         position: new google.maps.LatLng(location[i][1], location[i][2]),
         map: map
@@ -209,13 +208,19 @@ function clicker(location, lat, long) {
 
     }
 }
-
-function searchAddress() {
+function searchAddress () {
   addressInput = document.getElementById('address-input').value;
-  
-  geocoder = new google.maps.Geocoder(); 
+
+      map = new google.maps.Map(document.getElementById('googleMap'), {
+      zoom: 9,
+
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    });
+
+  geocoder = new google.maps.Geocoder();
   geocoder.geocode({address: addressInput}, function(results, status) {
     if (status == google.maps.GeocoderStatus.OK) {
+      console.log("HELLO!")
       myResult = results[0].geometry.location;
       codeAddress(myResult);
       map.setCenter(myResult);
@@ -228,7 +233,10 @@ function searchAddress() {
       alert("Geocode was not successful for the following reason: " + status);
     };
   });
-  
+
+  return addressInput;
+  };
+
   return addressInput;
   };
 function codeAddress(latlng) {
@@ -254,8 +262,8 @@ function codeAddress(latlng) {
           strokeColor: "#FFFFFF",
           strokeOpacity: 0.1,
           strokeWeight: 2
-      });  
-       
+      });
+
 
 };
 // // draws on user using GMaps
@@ -347,8 +355,8 @@ var myResult;
 
       //  document.getElementById('submit').addEventListener('click', function() {
         //  calculateAndDisplayRoute(directionsService, directionsDisplay);
-        
-      
+
+
 
 // function displayroute(directionsService, directionsDisplay) {
 
