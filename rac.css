@@ -9,8 +9,7 @@ body {
 
 #outerdivfav {
 	width: 45%;
-	float: right;
-	margin-top: -200px;
+	margin-top: -180px;
 	margin-right: 5%;
 }
 #outerdiv {
@@ -41,7 +40,7 @@ body {
 	border: solid;
 }
 
-.heading_main { 
+.heading_main {
 	background-image: url("sunset_boat.png");
 	background-size: cover;
 	max-width: 100%;
