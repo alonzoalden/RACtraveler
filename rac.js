@@ -237,8 +237,6 @@ function searchAddress () {
   return addressInput;
   };
 
-  return addressInput;
-  };
 function codeAddress(latlng) {
     if (marker != undefined && marker != ''){
             marker.setMap(null);
